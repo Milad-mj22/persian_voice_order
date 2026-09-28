@@ -10,21 +10,47 @@ def create_stt():
     provider = config.get("engines.stt_provider", "dummy")
     logger.info(f"[FACTORY] stt_provider = {provider!r}")
 
-    if provider == "whisper":
+    if provider == "openai_whisper":
         try:
-            from app.engines.stt.whisper_stt import WhisperSTT
-            return WhisperSTT()
+            from app.engines.stt.openai_whisper_stt import OpenAIWhisperSTT
+            stt = OpenAIWhisperSTT()
+            if stt.is_available():
+                logger.info("✅ OpenAIWhisperSTT")
+                return stt
         except Exception as e:
-            logger.error(f"[FACTORY] WhisperSTT error: {e}")
+            logger.exception(f"خطا: {e}")
+
+    if provider == "faster_whisper":
+        try:
+            from app.engines.stt.faster_whisper_stt import FasterWhisperSTT
+            return FasterWhisperSTT(
+                model_size=config.get_env("WHISPER_MODEL", "small"),
+                device=config.get_env("WHISPER_DEVICE", "cpu"),
+                compute_type=config.get_env("WHISPER_COMPUTE", "int8"),
+            )
+        except Exception as e:
+            logger.exception(f"خطا: {e}")
 
     from app.engines.stt.dummy_stt import DummySTT
     return DummySTT()
 
 
 def create_tts():
+    """ساخت موتور TTS"""
     config = ConfigManager()
     provider = config.get("engines.tts_provider", "dummy")
+
     logger.info(f"[FACTORY] tts_provider = {provider!r}")
+
+    if provider == "edge_tts":
+        try:
+            from app.engines.tts.edge_tts_provider import EdgeTTS
+            voice = config.get_env("TTS_VOICE", "fa-IR-FaridNeural")
+            bot = EdgeTTS(voice=voice)
+            if bot.is_available():
+                return bot
+        except Exception as e:
+            logger.exception(f"خطا در EdgeTTS: {e}")
 
     if provider == "pyttsx3":
         try:
@@ -33,11 +59,10 @@ def create_tts():
             if engine.is_available():
                 return engine
         except Exception as e:
-            logger.error(f"[FACTORY] Pyttsx3TTS error: {e}")
+            logger.exception(f"خطا در Pyttsx3TTS: {e}")
 
     from app.engines.tts.dummy_tts import DummyTTS
     return DummyTTS()
-
 
 def create_chatbot():
     config = ConfigManager()

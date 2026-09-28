@@ -18,8 +18,8 @@
     "products_json": "data/products.json"
   },
 "engines": {
-    "stt_provider": "dummy",
-    "tts_provider": "dummy",
+    "stt_provider": "openai_whisper",
+    "tts_provider": "edge_tts",
     "chatbot_provider": "openai"
 },
   "logging": {

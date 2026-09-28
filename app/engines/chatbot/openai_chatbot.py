@@ -11,7 +11,8 @@ from app.engines.chatbot.base import (
 )
 from app.services.product_service import get_product_service
 from app.services.settings_service import get_settings_service
-
+from app.engines.chatbot.tools import OPENAI_TOOLS, ToolExecutor
+import json
 
 class OpenAIChatbot(ChatbotEngine):
     """چت‌بات با GPT-4/3.5 از OpenAI"""
@@ -35,7 +36,7 @@ class OpenAIChatbot(ChatbotEngine):
         base_url = self.config.get_env("OPENAI_BASE_URL", "").strip() or None
 
         self._client = None
-
+        self.tool_executor = ToolExecutor()   # ← اضافه کن  
         # اطلاعات
         logger.info(
             f"OpenAIChatbot آماده شد | model={self.model} | "
@@ -92,33 +93,80 @@ class OpenAIChatbot(ChatbotEngine):
         context: ChatContext,
         history: list[ChatMessage] | None = None,
     ) -> str:
-        """گرفتن پاسخ از GPT"""
+        """گرفتن پاسخ از GPT با Function Calling"""
         try:
             client = self._get_client()
-
-            # ساخت messages
             messages = self._build_messages(user_input, context, history)
 
-            # فراخوانی API
-            response = client.chat.completions.create(
-                model=self.model,
-                messages=messages,
-                temperature=self.temperature,
-                max_tokens=self.max_tokens,
-            )
+            # حداکثر ۵ دور tool call
+            for iteration in range(5):
+                response = client.chat.completions.create(
+                    model=self.model,
+                    messages=messages,
+                    temperature=self.temperature,
+                    max_tokens=self.max_tokens,
+                    tools=OPENAI_TOOLS,
+                    tool_choice="auto",
+                )
 
-            text = response.choices[0].message.content or ""
-            text = text.strip()
+                msg = response.choices[0].message
+                tool_calls = getattr(msg, "tool_calls", None)
 
-            logger.debug(f"OpenAI پاسخ: {text[:80]!r}...")
+                # اگر tool call داشت → اجراش کن
+                if tool_calls:
+                    # اضافه کردن پیام assistant به messages
+                    messages.append({
+                        "role": "assistant",
+                        "content": msg.content or "",
+                        "tool_calls": [
+                            {
+                                "id": tc.id,
+                                "type": "function",
+                                "function": {
+                                    "name": tc.function.name,
+                                    "arguments": tc.function.arguments,
+                                },
+                            }
+                            for tc in tool_calls
+                        ],
+                    })
 
-            # استخراج دیتا از پاسخ (اختیاری - اگر JSON خواسته بودیم)
-            return text
+                    # اجرای هر tool
+                    for tc in tool_calls:
+                        tool_name = tc.function.name
+                        try:
+                            args = json.loads(tc.function.arguments or "{}")
+                        except json.JSONDecodeError:
+                            args = {}
+
+                        result = self.tool_executor.execute(tool_name, args, context)
+
+                        messages.append({
+                            "role": "tool",
+                            "tool_call_id": tc.id,
+                            "content": json.dumps(result, ensure_ascii=False),
+                        })
+
+                        logger.info(
+                            f"🔧 {tool_name} → "
+                            f"{'✅' if result.get('success') else '❌'} "
+                            f"{result.get('error', '')}"
+                        )
+
+                    # ادامه حلقه برای گرفتن پاسخ نهایی
+                    continue
+
+                # بدون tool call → پاسخ نهایی
+                text = (msg.content or "").strip()
+                logger.debug(f"OpenAI نهایی: {text[:80]!r}...")
+                return text
+
+            # اگر حلقه تموم شد بدون پاسخ نهایی
+            return "متأسفم، پردازش درخواست طول کشید. لطفاً دوباره بفرمایید."
 
         except Exception as e:
-            logger.error(f"خطای OpenAI: {e}")
+            logger.exception(f"خطای OpenAI: {e}")
             return self._fallback_response(e)
-
     # =========================================================
     # ساخت System Prompt
     # =========================================================
@@ -191,6 +239,29 @@ class OpenAIChatbot(ChatbotEngine):
 - شماره تماس‌گیرنده: {context.caller_phone}
 - آدرس مشتری: {context.address or "ثبت نشده"}
 - شماره ثبت: {context.order_phone or context.caller_phone}
+
+
+
+## ابزارهای موجود (Tools)
+شما به این ابزارها دسترسی دارید و **باید** از آن‌ها استفاده کنید:
+
+- `get_menu`: وقتی مشتری منو یا لیست محصولات می‌خواهد.
+- `add_to_cart`: وقتی مشتری صریحاً یک محصول سفارش می‌دهد. مثلاً "یه پیتزا مخصوص میخوام" یا "دو تا نوشابه".
+- `remove_from_cart`: وقتی مشتری می‌گوید "نمیخوام"، "حذف کن"، یا "کم کن".
+- `view_cart`: وقتی مشتری می‌پرسد "چی سفارش دادم؟" یا "سبدم چیه؟".
+- `set_address`: وقتی مشتری آدرس تحویل می‌دهد.
+- `set_phone`: وقتی مشتری شماره تماس جدید می‌دهد.
+- `set_customer_name`: وقتی مشتری خودش را معرفی می‌کند.
+
+## قواعد مهم درباره Tools
+1. **هرگز به مشتری نگو "سبد شما خالی است" یا "سبد پر شد"** مگر اینکه `view_cart` یا `add_to_cart` صدا زده باشی.
+2. اگر مشتری گفت "فلان چیز رو میخوام"، حتماً `add_to_cart` رو صدا بزن.
+3. اگر مشتری گفت "کدوم‌ها رو دارید؟"، `get_menu` رو صدا بزن.
+4. **پاسخ نهایی به مشتری را کوتاه و محاوره‌ای بده.** جزئیات از نتیجه tool کافیه.
+5. **از تعداد و نام دقیق محصولی که tool برگرداند استفاده کن، نه حافظه‌ات.**
+
+
+
 
 حالا به مشتری پاسخ بده. فقط متن پاسخ را بنویس، بدون هیچ توضیح اضافه."""
 
