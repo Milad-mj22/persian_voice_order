@@ -665,3 +665,123 @@ QPushButton#download_transcript_btn:hover { background-color: #e2e8f0; }
 QPushButton#download_transcript_btn:disabled {
     color: #cbd5e1;
 }
+
+
+
+
+
+
+
+/* =====================================================
+   Orders Page
+   ===================================================== */
+
+QLabel#page_title {
+    font-size: 26px;
+    font-weight: bold;
+    color: #1e293b;
+    padding: 4px 0;
+}
+
+QFrame#toolbar, QFrame#actions_bar {
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 8px;
+}
+
+QLabel#stats_label {
+    color: #475569;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+QPushButton#refresh_btn, QPushButton#export_btn {
+    background-color: #f1f5f9;
+    color: #475569;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    padding: 8px 14px;
+}
+QPushButton#refresh_btn:hover, QPushButton#export_btn:hover {
+    background-color: #e2e8f0;
+}
+
+QPushButton#view_btn {
+    background-color: #3b82f6;
+    color: #ffffff;
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-weight: bold;
+}
+QPushButton#view_btn:hover { background-color: #2563eb; }
+
+QPushButton#delete_btn {
+    background-color: #dc2626;
+    color: #ffffff;
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-weight: bold;
+}
+QPushButton#delete_btn:hover { background-color: #b91c1c; }
+
+/* =====================================================
+   Reports Page
+   ===================================================== */
+
+QFrame#card_today_count,
+QFrame#card_today_sum,
+QFrame#card_total_count,
+QFrame#card_total_sum {
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 12px;
+}
+
+QLabel#label_today_count,
+QLabel#label_today_sum,
+QLabel#label_total_count,
+QLabel#label_total_sum {
+    color: #64748b;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+QLabel#value_today_count,
+QLabel#value_today_sum,
+QLabel#value_total_count,
+QLabel#value_total_sum {
+    color: #1e293b;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+QGroupBox#chart_group, QGroupBox#top_group {
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    margin-top: 16px;
+    padding: 12px;
+    font-weight: bold;
+}
+
+QGroupBox#chart_group::title, QGroupBox#top_group::title {
+    subcontrol-origin: margin;
+    subcontrol-position: top right;
+    padding: 0 10px;
+    background-color: #f1f5f9;
+    border-radius: 6px;
+    color: #1e293b;
+}
+
+QListWidget#top_products_list {
+    background-color: #f8fafc;
+    border: none;
+    font-size: 13px;
+}
+
+QListWidget#top_products_list::item {
+    padding: 8px;
+    border-bottom: 1px solid #f1f5f9;
+}

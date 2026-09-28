@@ -3,6 +3,8 @@
 """
 from PySide6.QtWidgets import QMainWindow, QPushButton, QWidget
 from PySide6.QtCore import Signal
+from app.ui.controllers.orders_controller import OrdersController
+from app.ui.controllers.reports_controller import ReportsController
 from app.ui.controllers.test_call_controller import TestCallController
 from app.core.config_manager import ConfigManager
 from app.core.logger import logger
@@ -57,25 +59,19 @@ class MainController(QMainWindow):
     # =========================================================
     def _register_real_pages(self):
         """ثبت صفحات واقعی"""
-        try:
-            self.register_page("settings", SettingsController(parent=self))
-            logger.info("صفحه تنظیمات ثبت شد")
-        except Exception as e:
-            logger.error(f"خطا در ثبت صفحه تنظیمات: {e}")
-
-        try:
-            self.register_page("test_call", TestCallController(parent=self))
-            logger.info("صفحه تست تماس ثبت شد")
-        except Exception as e:
-            logger.error(f"خطا در ثبت صفحه تست تماس: {e}")
-            
-        try:
-            # صفحه محصولات
-            self.register_page("products", ProductsController(parent=self))
-            logger.info("صفحه محصولات ثبت شد")
-        except Exception as e:
-            logger.error(f"خطا در ثبت صفحه محصولات: {e}")
-
+        pages = [
+            ("products", ProductsController),
+            ("orders", OrdersController),
+            ("test_call", TestCallController),
+            ("reports", ReportsController),
+            ("settings", SettingsController),
+        ]
+        for name, cls in pages:
+            try:
+                self.register_page(name, cls(parent=self))
+                logger.info(f"صفحه {name} ثبت شد")
+            except Exception as e:
+                logger.exception(f"خطا در ثبت صفحه {name}: {e}")
 
     # =========================================================
     PAGE_INDEX = {
