@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ReportsPage</class>
+ <widget class="QWidget" name="ReportsPage">
+  <property name="geometry">
+   <rect><x>0</x><y>0</y><width>950</width><height>700</height></rect>
+  </property>
+  <property name="layoutDirection"><enum>Qt::RightToLeft</enum></property>
+  <layout class="QVBoxLayout" name="main_layout">
+   <property name="spacing"><number>14</number></property>
+   <property name="leftMargin"><number>20</number></property>
+   <property name="topMargin"><number>20</number></property>
+   <property name="rightMargin"><number>20</number></property>
+   <property name="bottomMargin"><number>20</number></property>
+
+   <item>
+    <widget class="QLabel" name="page_title">
+     <property name="text"><string>📈  گزارشات</string></property>
+     <property name="alignment"><set>Qt::AlignRight|Qt::AlignVCenter</set></property>
+    </widget>
+   </item>
+
+   <!-- کارت‌های آماری -->
+   <item>
+    <layout class="QHBoxLayout" name="cards_layout">
+     <property name="spacing"><number>12</number></property>
+
+     <item>
+      <widget class="QFrame" name="card_today_count">
+       <property name="frameShape"><enum>QFrame::StyledPanel</enum></property>
+       <property name="minimumSize"><size><width>180</width><height>100</height></size></property>
+       <layout class="QVBoxLayout" name="c1">
+        <item><widget class="QLabel" name="label_today_count">
+         <property name="text"><string>سفارشات امروز</string></property>
+         <property name="alignment"><set>Qt::AlignCenter</set></property>
+        </widget></item>
+        <item><widget class="QLabel" name="value_today_count">
+         <property name="text"><string>0</string></property>
+         <property name="alignment"><set>Qt::AlignCenter</set></property>
+        </widget></item>
+       </layout>
+      </widget>
+     </item>
+
+     <item>
+      <widget class="QFrame" name="card_today_sum">
+       <property name="frameShape"><enum>QFrame::StyledPanel</enum></property>
+       <property name="minimumSize"><size><width>180</width><height>100</height></size></property>
+       <layout class="QVBoxLayout" name="c2">
+        <item><widget class="QLabel" name="label_today_sum">
+         <property name="text"><string>فروش امروز (تومان)</string></property>
+         <property name="alignment"><set>Qt::AlignCenter</set></property>
+        </widget></item>
+        <item><widget class="QLabel" name="value_today_sum">
+         <property name="text"><string>0</string></property>
+         <property name="alignment"><set>Qt::AlignCenter</set></property>
+        </widget></item>
+       </layout>
+      </widget>
+     </item>
+
+     <item>
+      <widget class="QFrame" name="card_total_count">
+       <property name="frameShape"><enum>QFrame::StyledPanel</enum></property>
+       <property name="minimumSize"><size><width>180</width><height>100</height></size></property>
+       <layout class="QVBoxLayout" name="c3">
+        <item><widget class="QLabel" name="label_total_count">
+         <property name="text"><string>کل سفارشات</string></property>
+         <property name="alignment"><set>Qt::AlignCenter</set></property>
+        </widget></item>
+        <item><widget class="QLabel" name="value_total_count">
+         <property name="text"><string>0</string></property>
+         <property name="alignment"><set>Qt::AlignCenter</set></property>
+        </widget></item>
+       </layout>
+      </widget>
+     </item>
+
+     <item>
+      <widget class="QFrame" name="card_total_sum">
+       <property name="frameShape"><enum>QFrame::StyledPanel</enum></property>
+       <property name="minimumSize"><size><width>180</width><height>100</height></size></property>
+       <layout class="QVBoxLayout" name="c4">
+        <item><widget class="QLabel" name="label_total_sum">
+         <property name="text"><string>کل فروش (تومان)</string></property>
+         <property name="alignment"><set>Qt::AlignCenter</set></property>
+        </widget></item>
+        <item><widget class="QLabel" name="value_total_sum">
+         <property name="text"><string>0</string></property>
+         <property name="alignment"><set>Qt::AlignCenter</set></property>
+        </widget></item>
+       </layout>
+      </widget>
+     </item>
+
+    </layout>
+   </item>
+
+   <!-- نمودار + پر فروش‌ها -->
+   <item>
+    <layout class="QHBoxLayout" name="charts_layout">
+     <property name="spacing"><number>12</number></property>
+
+     <item>
+      <widget class="QGroupBox" name="chart_group">
+       <property name="title"><string>📊  فروش ۷ روز اخیر</string></property>
+       <layout class="QVBoxLayout" name="chart_outer">
+        <item>
+         <widget class="QWidget" name="chart_container">
+          <property name="minimumSize"><size><width>500</width><height>300</height></size></property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+
+     <item>
+      <widget class="QGroupBox" name="top_group">
+       <property name="title"><string>🏆  پر فروش‌ترین‌ها</string></property>
+       <property name="minimumSize"><size><width>320</width><height>0</height></size></property>
+       <layout class="QVBoxLayout" name="top_layout">
+        <item>
+         <widget class="QListWidget" name="top_products_list"/>
+        </item>
+       </layout>
+      </widget>
+     </item>
+
+    </layout>
+   </item>
+
+   <item>
+    <spacer name="bottom_spacer">
+     <property name="orientation"><enum>Qt::Vertical</enum></property>
+    </spacer>
+   </item>
+
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

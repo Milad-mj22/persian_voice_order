@@ -327,74 +327,70 @@ class TestCallController(QWidget):
     # =========================================================
     # ذخیره سفارش نهایی
     # =========================================================
+
     def save_final_order(self):
-        """ذخیره سفارش در فایل"""
+        """ذخیره سفارش در دیتابیس"""
         if not self.context:
             return
 
         if not self.context.cart:
-            QMessageBox.information(
-                self, "سبد خالی", "سبد خرید خالی است."
-            )
+            QMessageBox.information(self, "سبد خالی", "سبد خرید خالی است.")
             return
 
         if not self.context.address:
-            QMessageBox.warning(
-                self, "آدرس ناقص",
-                "آدرس مشتری ثبت نشده است."
-            )
+            QMessageBox.warning(self, "آدرس ناقص", "آدرس مشتری ثبت نشده است.")
             return
 
         try:
+            # ⭐ استفاده از OrderService به‌جای فایل JSON
+            from app.services.order_service import get_order_service
+
+            order_service = get_order_service()
+
+            duration = 0
+            if self.call_start_time:
+                duration = int(
+                    (datetime.now() - self.call_start_time).total_seconds()
+                )
+
             # ساخت داده سفارش
             order_data = {
-                "order_id": str(uuid.uuid4())[:8].upper(),
                 "session_id": self.session_id,
-                "created_at": datetime.now().isoformat(),
                 "caller_phone": self.context.caller_phone,
                 "order_phone": self.context.order_phone or self.context.caller_phone,
                 "is_same_as_caller": self.context.is_same_as_caller,
                 "address": self.context.address,
                 "items": self.context.cart,
-                "total": self.context.cart_total,
-                "duration_seconds": int(
-                    (datetime.now() - self.call_start_time).total_seconds()
-                ) if self.call_start_time else 0,
+                "total_price": self.context.cart_total,
+                "duration_seconds": duration,
                 "transcript": self._build_transcript(),
+                "status": "pending",
             }
 
-            # ذخیره در فایل
-            confirmations_dir = self.config.get_path("paths.confirmations_dir")
-            confirmations_dir.mkdir(parents=True, exist_ok=True)
+            # ذخیره در DB
+            order = order_service.create(order_data)
 
-            filename = f"order_{order_data['order_id']}.json"
-            filepath = confirmations_dir / filename
+            if order is None:
+                QMessageBox.warning(self, "خطا", "ذخیره سفارش ناموفق بود.")
+                return
 
-            with open(filepath, "w", encoding="utf-8") as f:
-                json.dump(order_data, f, ensure_ascii=False, indent=2)
+            logger.info(f"سفارش ذخیره شد: {order.order_code}")
 
-            logger.info(f"سفارش ذخیره شد: {filepath}")
-
-            # نمایش به کاربر
             QMessageBox.information(
                 self, "✅ سفارش ثبت شد",
-                f"سفارش با کد {order_data['order_id']} ثبت شد.\n\n"
-                f"مجموع: {order_data['total']:,} تومان\n"
-                f"تعداد اقلام: {len(order_data['items'])}\n\n"
-                f"📁 فایل: {filepath}"
+                f"کد سفارش: {order.order_code}\n\n"
+                f"مجموع: {order.total_price:,} تومان\n"
+                f"تعداد اقلام: {order.items_count}\n"
+                f"آدرس: {order.address[:60]}...\n\n"
+                f"در صفحه «📋 سفارشات» قابل مشاهده است."
             )
 
-            self.order_completed.emit(order_data)
-
-            # پاک کردن وضعیت
+            self.order_completed.emit(order.to_dict())
             self._reset_after_save()
 
         except Exception as e:
             logger.exception(f"خطا در ذخیره سفارش: {e}")
-            QMessageBox.critical(
-                self, "خطا",
-                f"ذخیره سفارش ناموفق بود:\n{e}"
-            )
+            QMessageBox.critical(self, "خطا", f"ذخیره ناموفق بود:\n{e}")
 
     def _reset_after_save(self):
         """بازنشانی بعد از ذخیره موفق"""

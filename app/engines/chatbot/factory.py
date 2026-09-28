@@ -81,3 +81,16 @@ def create_chatbot():
     logger.info(f"[FACTORY] → شاخه پیش‌فرض (provider != openai)")
     from app.engines.chatbot.rule_based import RuleBasedChatbot
     return RuleBasedChatbot()
+
+
+
+def create_chatbot():
+    """ساخت موتور Chatbot"""
+    print("🔥🔥🔥 CREATE_CHATBOT CALLED 🔥🔥🔥")   # ← اضافه کن
+    config = ConfigManager()
+    provider = config.get("engines.chatbot_provider", "rule_based")
+    
+    print(f"🔥 provider from config = {provider!r}")  # ← اضافه کن
+
+    logger.info(f"[FACTORY] ================================")
+    ...

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>OrdersPage</class>
+ <widget class="QWidget" name="OrdersPage">
+  <property name="geometry">
+   <rect><x>0</x><y>0</y><width>950</width><height>700</height></rect>
+  </property>
+  <property name="layoutDirection"><enum>Qt::RightToLeft</enum></property>
+  <layout class="QVBoxLayout" name="main_layout">
+   <property name="spacing"><number>12</number></property>
+   <property name="leftMargin"><number>20</number></property>
+   <property name="topMargin"><number>20</number></property>
+   <property name="rightMargin"><number>20</number></property>
+   <property name="bottomMargin"><number>20</number></property>
+
+   <item>
+    <widget class="QLabel" name="page_title">
+     <property name="text"><string>📋  سفارشات</string></property>
+     <property name="alignment"><set>Qt::AlignRight|Qt::AlignVCenter</set></property>
+    </widget>
+   </item>
+
+   <!-- Toolbar -->
+   <item>
+    <widget class="QFrame" name="toolbar">
+     <property name="frameShape"><enum>QFrame::StyledPanel</enum></property>
+     <layout class="QHBoxLayout" name="toolbar_layout">
+      <property name="spacing"><number>8</number></property>
+
+      <item>
+       <widget class="QPushButton" name="refresh_btn">
+        <property name="text"><string>🔄  بروزرسانی</string></property>
+        <property name="minimumSize"><size><width>120</width><height>36</height></size></property>
+        <property name="cursor"><cursorShape>PointingHandCursor</cursorShape></property>
+       </widget>
+      </item>
+
+      <item>
+       <widget class="QPushButton" name="export_btn">
+        <property name="text"><string>📥  خروجی CSV</string></property>
+        <property name="minimumSize"><size><width>120</width><height>36</height></size></property>
+        <property name="cursor"><cursorShape>PointingHandCursor</cursorShape></property>
+       </widget>
+      </item>
+
+      <item>
+       <spacer name="sp1">
+        <property name="orientation"><enum>Qt::Horizontal</enum></property>
+       </spacer>
+      </item>
+
+      <item>
+       <widget class="QComboBox" name="status_combo">
+        <property name="minimumSize"><size><width>150</width><height>36</height></size></property>
+       </widget>
+      </item>
+
+      <item>
+       <widget class="QLineEdit" name="search_edit">
+        <property name="minimumSize"><size><width>240</width><height>36</height></size></property>
+        <property name="placeholderText"><string>🔍  جستجو در شماره، کد سفارش، آدرس...</string></property>
+        <property name="clearButtonEnabled"><bool>true</bool></property>
+       </widget>
+      </item>
+
+     </layout>
+    </widget>
+   </item>
+
+   <!-- جدول سفارشات -->
+   <item>
+    <widget class="QTableWidget" name="orders_table">
+     <property name="alternatingRowColors"><bool>true</bool></property>
+     <property name="selectionBehavior"><enum>QAbstractItemView::SelectRows</enum></property>
+     <property name="selectionMode"><enum>QAbstractItemView::SingleSelection</enum></property>
+     <property name="editTriggers"><set>QAbstractItemView::NoEditTriggers</set></property>
+     <property name="sortingEnabled"><bool>true</bool></property>
+     <column><property name="text"><string>کد</string></property></column>
+     <column><property name="text"><string>تاریخ</string></property></column>
+     <column><property name="text"><string>شماره</string></property></column>
+     <column><property name="text"><string>آدرس</string></property></column>
+     <column><property name="text"><string>اقلام</string></property></column>
+     <column><property name="text"><string>مبلغ (تومان)</string></property></column>
+     <column><property name="text"><string>وضعیت</string></property></column>
+    </widget>
+   </item>
+
+   <!-- Actions bar -->
+   <item>
+    <widget class="QFrame" name="actions_bar">
+     <property name="frameShape"><enum>QFrame::StyledPanel</enum></property>
+     <layout class="QHBoxLayout" name="actions_layout">
+
+      <item>
+       <widget class="QLabel" name="stats_label">
+        <property name="text"><string>در حال بارگذاری...</string></property>
+       </widget>
+      </item>
+
+      <item>
+       <spacer name="sp2">
+        <property name="orientation"><enum>Qt::Horizontal</enum></property>
+       </spacer>
+      </item>
+
+      <item>
+       <widget class="QPushButton" name="delete_btn">
+        <property name="text"><string>🗑️  حذف</string></property>
+        <property name="minimumSize"><size><width>100</width><height>36</height></size></property>
+        <property name="cursor"><cursorShape>PointingHandCursor</cursorShape></property>
+       </widget>
+      </item>
+
+      <item>
+       <widget class="QPushButton" name="view_btn">
+        <property name="text"><string>👁️  مشاهده جزئیات</string></property>
+        <property name="minimumSize"><size><width>140</width><height>36</height></size></property>
+        <property name="cursor"><cursorShape>PointingHandCursor</cursorShape></property>
+       </widget>
+      </item>
+
+     </layout>
+    </widget>
+   </item>
+
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>OrderDetailDialog</class>
+ <widget class="QDialog" name="OrderDetailDialog">
+  <property name="geometry">
+   <rect><x>0</x><y>0</y><width>600</width><height>650</height></rect>
+  </property>
+  <property name="windowTitle"><string>جزئیات سفارش</string></property>
+  <property name="layoutDirection"><enum>Qt::RightToLeft</enum></property>
+  <layout class="QVBoxLayout" name="main_layout">
+   <property name="spacing"><number>12</number></property>
+   <property name="leftMargin"><number>20</number></property>
+   <property name="topMargin"><number>20</number></property>
+   <property name="rightMargin"><number>20</number></property>
+   <property name="bottomMargin"><number>20</number></property>
+
+   <item>
+    <widget class="QLabel" name="title_label">
+     <property name="text"><string>📋  جزئیات سفارش</string></property>
+     <property name="alignment"><set>Qt::AlignCenter</set></property>
+    </widget>
+   </item>
+
+   <item>
+    <widget class="QFrame" name="line">
+     <property name="frameShape"><enum>QFrame::HLine</enum></property>
+     <property name="frameShadow"><enum>QFrame::Sunken</enum></property>
+    </widget>
+   </item>
+
+   <!-- اطلاعات کلی -->
+   <item>
+    <widget class="QGroupBox" name="info_group">
+     <property name="title"><string>اطلاعات مشتری</string></property>
+     <layout class="QFormLayout" name="info_form">
+      <property name="labelAlignment"><set>Qt::AlignRight|Qt::AlignVCenter</set></property>
+
+      <item row="0" column="0">
+       <widget class="QLabel"><property name="text"><string>کد سفارش:</string></property></widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLabel" name="code_value"><property name="text"><string>-</string></property></widget>
+      </item>
+
+      <item row="1" column="0">
+       <widget class="QLabel"><property name="text"><string>شماره تماس:</string></property></widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLabel" name="phone_value"><property name="text"><string>-</string></property></widget>
+      </item>
+
+      <item row="2" column="0">
+       <widget class="QLabel"><property name="text"><string>شماره ثبت:</string></property></widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QLabel" name="order_phone_value"><property name="text"><string>-</string></property></widget>
+      </item>
+
+      <item row="3" column="0">
+       <widget class="QLabel"><property name="text"><string>آدرس:</string></property></widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QLabel" name="address_value">
+        <property name="text"><string>-</string></property>
+        <property name="wordWrap"><bool>true</bool></property>
+       </widget>
+      </item>
+
+      <item row="4" column="0">
+       <widget class="QLabel"><property name="text"><string>تاریخ:</string></property></widget>
+      </item>
+      <item row="4" column="1">
+       <widget class="QLabel" name="date_value"><property name="text"><string>-</string></property></widget>
+      </item>
+
+      <item row="5" column="0">
+       <widget class="QLabel"><property name="text"><string>وضعیت:</string></property></widget>
+      </item>
+      <item row="5" column="1">
+       <widget class="QComboBox" name="status_combo"/>
+      </item>
+
+     </layout>
+    </widget>
+   </item>
+
+   <!-- اقلام -->
+   <item>
+    <widget class="QGroupBox" name="items_group">
+     <property name="title"><string>اقلام سفارش</string></property>
+     <layout class="QVBoxLayout" name="items_layout">
+
+      <item>
+       <widget class="QTableWidget" name="items_table">
+        <property name="alternatingRowColors"><bool>true</bool></property>
+        <property name="editTriggers"><set>QAbstractItemView::NoEditTriggers</set></property>
+        <column><property name="text"><string>نام</string></property></column>
+        <column><property name="text"><string>تعداد</string></property></column>
+        <column><property name="text"><string>قیمت واحد</string></property></column>
+        <column><property name="text"><string>جمع</string></property></column>
+       </widget>
+      </item>
+
+      <item>
+       <widget class="QLabel" name="total_label">
+        <property name="text"><string>💰  مجموع: 0 تومان</string></property>
+        <property name="alignment"><set>Qt::AlignLeft|Qt::AlignVCenter</set></property>
+       </widget>
+      </item>
+
+     </layout>
+    </widget>
+   </item>
+
+   <!-- Transcript (مخفی به صورت accordion) -->
+   <item>
+    <widget class="QPushButton" name="toggle_transcript_btn">
+     <property name="text"><string>📝  نمایش متن مکالمه</string></property>
+     <property name="cursor"><cursorShape>PointingHandCursor</cursorShape></property>
+     <property name="checkable"><bool>true</bool></property>
+    </widget>
+   </item>
+
+   <item>
+    <widget class="QTextEdit" name="transcript_edit">
+     <property name="readOnly"><bool>true</bool></property>
+     <property name="maximumSize"><size><width>16777215</width><height>0</height></size></property>
+     <property name="visible"><bool>false</bool></property>
+    </widget>
+   </item>
+
+   <item>
+    <widget class="QFrame" name="line2">
+     <property name="frameShape"><enum>QFrame::HLine</enum></property>
+     <property name="frameShadow"><enum>QFrame::Sunken</enum></property>
+    </widget>
+   </item>
+
+   <!-- دکمه‌ها -->
+   <item>
+    <layout class="QHBoxLayout" name="buttons_layout">
+     <item>
+      <spacer name="sp"><property name="orientation"><enum>Qt::Horizontal</enum></property></spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="close_btn">
+       <property name="text"><string>بستن</string></property>
+       <property name="minimumSize"><size><width>100</width><height>38</height></size></property>
+       <property name="cursor"><cursorShape>PointingHandCursor</cursorShape></property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="save_btn">
+       <property name="text"><string>💾  ذخیره تغییرات</string></property>
+       <property name="minimumSize"><size><width>150</width><height>38</height></size></property>
+       <property name="cursor"><cursorShape>PointingHandCursor</cursorShape></property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
