@@ -1,0 +1,31 @@
+{
+  "app": {
+    "name": "سامانه سفارش‌گیری هوشمند",
+    "version": "0.1.0",
+    "language": "fa",
+    "layout": "rtl"
+  },
+  "database": {
+    "type": "sqlite",
+    "path": "data/app.db",
+    "echo": false
+  },
+  "paths": {
+    "data_dir": "data",
+    "logs_dir": "logs",
+    "recordings_dir": "data/recordings",
+    "confirmations_dir": "data/confirmations",
+    "products_json": "data/products.json"
+  },
+"engines": {
+    "stt_provider": "dummy",
+    "tts_provider": "dummy",
+    "chatbot_provider": "openai"
+},
+  "logging": {
+    "level": "INFO",
+    "file": "logs/app.log",
+    "max_bytes": 5242880,
+    "backup_count": 3
+  }
+}

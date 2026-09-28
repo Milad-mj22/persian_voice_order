@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ProductsPage</class>
+ <widget class="QWidget" name="ProductsPage">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>950</width>
+    <height>700</height>
+   </rect>
+  </property>
+  <property name="layoutDirection">
+   <enum>Qt::RightToLeft</enum>
+  </property>
+  <layout class="QVBoxLayout" name="main_layout">
+   <property name="spacing">
+    <number>12</number>
+   </property>
+   <property name="leftMargin">
+    <number>20</number>
+   </property>
+   <property name="topMargin">
+    <number>20</number>
+   </property>
+   <property name="rightMargin">
+    <number>20</number>
+   </property>
+   <property name="bottomMargin">
+    <number>20</number>
+   </property>
+
+   <!-- عنوان -->
+   <item>
+    <widget class="QLabel" name="page_title">
+     <property name="text">
+      <string>🍕  مدیریت محصولات</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+   </item>
+
+   <!-- نوار ابزار (جستجو + فیلتر + دکمه‌ها) -->
+   <item>
+    <widget class="QFrame" name="toolbar">
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <layout class="QHBoxLayout" name="toolbar_layout">
+      <property name="spacing">
+       <number>8</number>
+      </property>
+
+      <item>
+       <widget class="QPushButton" name="add_btn">
+        <property name="text">
+         <string>➕  افزودن محصول</string>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>140</width>
+          <height>36</height>
+         </size>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+       </widget>
+      </item>
+
+      <item>
+       <widget class="QPushButton" name="refresh_btn">
+        <property name="text">
+         <string>🔄  بروزرسانی</string>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>110</width>
+          <height>36</height>
+         </size>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+       </widget>
+      </item>
+
+      <item>
+       <spacer name="toolbar_spacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+
+      <item>
+       <widget class="QComboBox" name="category_combo">
+        <property name="minimumSize">
+         <size>
+          <width>160</width>
+          <height>36</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+
+      <item>
+       <widget class="QLineEdit" name="search_edit">
+        <property name="minimumSize">
+         <size>
+          <width>240</width>
+          <height>36</height>
+         </size>
+        </property>
+        <property name="placeholderText">
+         <string>🔍  جستجوی محصول...</string>
+        </property>
+        <property name="clearButtonEnabled">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+
+     </layout>
+    </widget>
+   </item>
+
+   <!-- جدول محصولات -->
+   <item>
+    <widget class="QTableWidget" name="products_table">
+     <property name="alternatingRowColors">
+      <bool>true</bool>
+     </property>
+     <property name="selectionBehavior">
+      <enum>QAbstractItemView::SelectRows</enum>
+     </property>
+     <property name="selectionMode">
+      <enum>QAbstractItemView::SingleSelection</enum>
+     </property>
+     <property name="editTriggers">
+      <set>QAbstractItemView::NoEditTriggers</set>
+     </property>
+     <property name="sortingEnabled">
+      <bool>true</bool>
+     </property>
+     <column>
+      <property name="text">
+       <string>شناسه</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>نام محصول</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>دسته‌بندی</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>قیمت (تومان)</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>موجودی</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>وضعیت</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>ویژه</string>
+      </property>
+     </column>
+    </widget>
+   </item>
+
+   <!-- نوار پایین (عملیات) -->
+   <item>
+    <widget class="QFrame" name="actions_bar">
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <layout class="QHBoxLayout" name="actions_layout">
+
+      <item>
+       <widget class="QLabel" name="stats_label">
+        <property name="text">
+         <string>در حال بارگذاری...</string>
+        </property>
+       </widget>
+      </item>
+
+      <item>
+       <spacer name="actions_spacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+
+      <item>
+       <widget class="QPushButton" name="delete_btn">
+        <property name="text">
+         <string>🗑️  حذف</string>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>100</width>
+          <height>36</height>
+         </size>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+       </widget>
+      </item>
+
+      <item>
+       <widget class="QPushButton" name="edit_btn">
+        <property name="text">
+         <string>✏️  ویرایش</string>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>100</width>
+          <height>36</height>
+         </size>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+       </widget>
+      </item>
+
+     </layout>
+    </widget>
+   </item>
+
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

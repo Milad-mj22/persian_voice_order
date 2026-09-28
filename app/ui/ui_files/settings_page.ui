@@ -1,0 +1,625 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>SettingsPage</class>
+ <widget class="QWidget" name="SettingsPage">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>950</width>
+    <height>700</height>
+   </rect>
+  </property>
+  <property name="layoutDirection">
+   <enum>Qt::RightToLeft</enum>
+  </property>
+  <layout class="QVBoxLayout" name="main_layout">
+   <property name="spacing">
+    <number>12</number>
+   </property>
+   <property name="leftMargin">
+    <number>20</number>
+   </property>
+   <property name="topMargin">
+    <number>20</number>
+   </property>
+   <property name="rightMargin">
+    <number>20</number>
+   </property>
+   <property name="bottomMargin">
+    <number>20</number>
+   </property>
+
+   <!-- ===== عنوان صفحه ===== -->
+   <item>
+    <widget class="QLabel" name="page_title">
+     <property name="text">
+      <string>⚙️  تنظیمات سامانه</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+   </item>
+
+   <!-- ===== ScrollArea ===== -->
+   <item>
+    <widget class="QScrollArea" name="scroll_area">
+     <property name="widgetResizable">
+      <bool>true</bool>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::NoFrame</enum>
+     </property>
+     <widget class="QWidget" name="scroll_content">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>910</width>
+        <height>1200</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="content_layout">
+       <property name="spacing">
+        <number>14</number>
+       </property>
+
+       <!-- ===== گروه ۱: اطلاعات کسب‌وکار ===== -->
+       <item>
+        <widget class="QGroupBox" name="group_business">
+         <property name="title">
+          <string>🏪  اطلاعات کسب‌وکار</string>
+         </property>
+         <layout class="QFormLayout" name="form_business">
+          <property name="labelAlignment">
+           <set>Qt::AlignRight|Qt::AlignVCenter</set>
+          </property>
+          <property name="horizontalSpacing">
+           <number>12</number>
+          </property>
+          <property name="verticalSpacing">
+           <number>10</number>
+          </property>
+
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_business_name">
+            <property name="text">
+             <string>نام کسب‌وکار:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLineEdit" name="business_name_edit">
+            <property name="placeholderText">
+             <string>مثال: فست‌فود سکه طلا</string>
+            </property>
+           </widget>
+          </item>
+
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_business_goal">
+            <property name="text">
+             <string>اهداف چت‌بات:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QTextEdit" name="business_goal_edit">
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>70</height>
+             </size>
+            </property>
+            <property name="placeholderText">
+             <string>دریافت سفارش، ترغیب مشتری، آپ‌سلا...</string>
+            </property>
+           </widget>
+          </item>
+
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_welcome">
+            <property name="text">
+             <string>پیام خوش‌آمدگویی:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QTextEdit" name="welcome_message_edit">
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>70</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+
+          <item row="3" column="0">
+           <widget class="QLabel" name="label_goodbye">
+            <property name="text">
+             <string>پیام خداحافظی:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="QTextEdit" name="goodbye_message_edit">
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>70</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+
+         </layout>
+        </widget>
+       </item>
+
+       <!-- ===== گروه ۲: شخصیت چت‌بات ===== -->
+       <item>
+        <widget class="QGroupBox" name="group_persona">
+         <property name="title">
+          <string>🎭  شخصیت و لحن چت‌بات</string>
+         </property>
+         <layout class="QFormLayout" name="form_persona">
+          <property name="labelAlignment">
+           <set>Qt::AlignRight|Qt::AlignVCenter</set>
+          </property>
+          <property name="horizontalSpacing">
+           <number>12</number>
+          </property>
+          <property name="verticalSpacing">
+           <number>10</number>
+          </property>
+
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_tone">
+            <property name="text">
+             <string>لحن (۰=رسمی، ۱۰=صمیمی):</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <layout class="QVBoxLayout" name="tone_layout">
+            <property name="spacing">
+             <number>4</number>
+            </property>
+            <item>
+             <widget class="QSlider" name="tone_slider">
+              <property name="minimum">
+               <number>0</number>
+              </property>
+              <property name="maximum">
+               <number>10</number>
+              </property>
+              <property name="value">
+               <number>5</number>
+              </property>
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="tickPosition">
+               <enum>QSlider::TicksBelow</enum>
+              </property>
+              <property name="tickInterval">
+               <number>1</number>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="tone_label">
+              <property name="text">
+               <string>۵ - متعادل</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_humor">
+            <property name="text">
+             <string>میزان شوخ‌طبعی:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QComboBox" name="humor_combo">
+            <item>
+             <property name="text">
+              <string>کم</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>متوسط</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>زیاد</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_language">
+            <property name="text">
+             <string>زبان چت‌بات:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QComboBox" name="language_combo">
+            <item>
+             <property name="text">
+              <string>فارسی</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>انگلیسی</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>دوزبانه</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+
+         </layout>
+        </widget>
+       </item>
+
+       <!-- ===== گروه ۳: ساعات کاری ===== -->
+       <item>
+        <widget class="QGroupBox" name="group_hours">
+         <property name="title">
+          <string>🕐  ساعات کاری</string>
+         </property>
+         <layout class="QFormLayout" name="form_hours">
+          <property name="labelAlignment">
+           <set>Qt::AlignRight|Qt::AlignVCenter</set>
+          </property>
+          <property name="horizontalSpacing">
+           <number>12</number>
+          </property>
+          <property name="verticalSpacing">
+           <number>10</number>
+          </property>
+
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_open">
+            <property name="text">
+             <string>ساعت شروع:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QTimeEdit" name="open_time_edit">
+            <property name="displayFormat">
+             <string>HH:mm</string>
+            </property>
+           </widget>
+          </item>
+
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_close">
+            <property name="text">
+             <string>ساعت پایان:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QTimeEdit" name="close_time_edit">
+            <property name="displayFormat">
+             <string>HH:mm</string>
+            </property>
+           </widget>
+          </item>
+
+         </layout>
+        </widget>
+       </item>
+
+       <!-- ===== گروه ۴: تایید شماره تماس ===== -->
+       <item>
+        <widget class="QGroupBox" name="group_phone">
+         <property name="title">
+          <string>📞  تایید شماره تماس</string>
+         </property>
+         <layout class="QFormLayout" name="form_phone">
+          <property name="labelAlignment">
+           <set>Qt::AlignRight|Qt::AlignVCenter</set>
+          </property>
+          <property name="horizontalSpacing">
+           <number>12</number>
+          </property>
+          <property name="verticalSpacing">
+           <number>10</number>
+          </property>
+
+          <item row="0" column="0" colspan="2">
+           <widget class="QCheckBox" name="ask_phone_confirmation_check">
+            <property name="text">
+             <string>پرسیدن تایید شماره فعال باشد</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_phone_confirm">
+            <property name="text">
+             <string>پیام تایید شماره:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QLineEdit" name="phone_confirm_msg_edit"/>
+          </item>
+
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_phone_again">
+            <property name="text">
+             <string>پیام درخواست شماره جدید:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QLineEdit" name="ask_phone_again_msg_edit"/>
+          </item>
+
+          <item row="3" column="0">
+           <widget class="QLabel" name="label_phone_invalid">
+            <property name="text">
+             <string>پیام شماره نامعتبر:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="QLineEdit" name="invalid_phone_msg_edit"/>
+          </item>
+
+          <item row="4" column="0">
+           <widget class="QLabel" name="label_phone_retry">
+            <property name="text">
+             <string>حداکثر تلاش:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1">
+           <widget class="QSpinBox" name="max_phone_retry_spin">
+            <property name="minimum">
+             <number>1</number>
+            </property>
+            <property name="maximum">
+             <number>10</number>
+            </property>
+            <property name="value">
+             <number>3</number>
+            </property>
+           </widget>
+          </item>
+
+         </layout>
+        </widget>
+       </item>
+
+       <!-- ===== گروه ۵: اطلاعات شرکت ===== -->
+       <item>
+        <widget class="QGroupBox" name="group_company">
+         <property name="title">
+          <string>🏢  اطلاعات شرکت (Knowledge Base)</string>
+         </property>
+         <layout class="QFormLayout" name="form_company">
+          <property name="labelAlignment">
+           <set>Qt::AlignRight|Qt::AlignVCenter</set>
+          </property>
+          <property name="horizontalSpacing">
+           <number>12</number>
+          </property>
+          <property name="verticalSpacing">
+           <number>10</number>
+          </property>
+
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_address">
+            <property name="text">
+             <string>آدرس فیزیکی:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLineEdit" name="address_edit"/>
+          </item>
+
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_phone">
+            <property name="text">
+             <string>شماره تماس شرکت:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QLineEdit" name="phone_edit"/>
+          </item>
+
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_delivery_area">
+            <property name="text">
+             <string>محدوده ارسال:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QLineEdit" name="delivery_area_edit"/>
+          </item>
+
+          <item row="3" column="0">
+           <widget class="QLabel" name="label_payment">
+            <property name="text">
+             <string>روش‌های پرداخت:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="QLineEdit" name="payment_methods_edit"/>
+          </item>
+
+          <item row="4" column="0">
+           <widget class="QLabel" name="label_discount">
+            <property name="text">
+             <string>سیاست تخفیف:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1">
+           <widget class="QTextEdit" name="discount_policy_edit">
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>70</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+
+          <item row="5" column="0">
+           <widget class="QLabel" name="label_brand">
+            <property name="text">
+             <string>معرفی برند:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="1">
+           <widget class="QTextEdit" name="brand_story_edit">
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>90</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+
+         </layout>
+        </widget>
+       </item>
+
+       <!-- Spacer برای فشرده نشدن -->
+       <item>
+        <spacer name="vertical_spacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>10</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+
+      </layout>
+     </widget>
+    </widget>
+   </item>
+
+   <!-- ===== نوار دکمه‌ها ===== -->
+   <item>
+    <widget class="QFrame" name="button_bar">
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <layout class="QHBoxLayout" name="button_bar_layout">
+      <property name="leftMargin">
+       <number>0</number>
+      </property>
+      <property name="topMargin">
+       <number>10</number>
+      </property>
+      <property name="rightMargin">
+       <number>0</number>
+      </property>
+      <property name="bottomMargin">
+       <number>0</number>
+      </property>
+
+      <item>
+       <widget class="QLabel" name="status_label">
+        <property name="text">
+         <string></string>
+        </property>
+       </widget>
+      </item>
+
+      <item>
+       <spacer name="button_spacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+
+      <item>
+       <widget class="QPushButton" name="reset_btn">
+        <property name="text">
+         <string>↺  بازنشانی به پیش‌فرض</string>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>160</width>
+          <height>38</height>
+         </size>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+       </widget>
+      </item>
+
+      <item>
+       <widget class="QPushButton" name="save_btn">
+        <property name="text">
+         <string>💾  ذخیره تنظیمات</string>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>160</width>
+          <height>38</height>
+         </size>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+       </widget>
+      </item>
+
+     </layout>
+    </widget>
+   </item>
+
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1200</width>
+    <height>750</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>سامانه سفارش‌گیری هوشمند</string>
+  </property>
+  <property name="layoutDirection">
+   <enum>Qt::RightToLeft</enum>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QHBoxLayout" name="main_layout">
+    <property name="spacing">
+     <number>0</number>
+    </property>
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+
+    <!-- ===== SIDEBAR ===== -->
+    <item>
+     <widget class="QWidget" name="sidebar" native="true">
+      <property name="minimumSize">
+       <size>
+        <width>220</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>220</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <layout class="QVBoxLayout" name="sidebar_layout">
+       <property name="spacing">
+        <number>6</number>
+       </property>
+       <property name="leftMargin">
+        <number>12</number>
+       </property>
+       <property name="topMargin">
+        <number>16</number>
+       </property>
+       <property name="rightMargin">
+        <number>12</number>
+       </property>
+       <property name="bottomMargin">
+        <number>16</number>
+       </property>
+
+       <!-- لوگو -->
+       <item>
+        <widget class="QLabel" name="logo_label">
+         <property name="text">
+          <string>🍔 سکه طلا</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+
+       <!-- جداکننده -->
+       <item>
+        <widget class="QFrame" name="separator">
+         <property name="frameShape">
+          <enum>QFrame::HLine</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Sunken</enum>
+         </property>
+        </widget>
+       </item>
+
+       <!-- دکمه‌های ناوبری -->
+       <item>
+        <widget class="QPushButton" name="btn_dashboard">
+         <property name="text">
+          <string>📊  داشبورد</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+         <property name="cursor">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
+        </widget>
+       </item>
+
+       <item>
+        <widget class="QPushButton" name="btn_products">
+         <property name="text">
+          <string>🍕  محصولات</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="cursor">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
+        </widget>
+       </item>
+
+       <item>
+        <widget class="QPushButton" name="btn_orders">
+         <property name="text">
+          <string>📋  سفارشات</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="cursor">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
+        </widget>
+       </item>
+
+       <item>
+        <widget class="QPushButton" name="btn_test_call">
+         <property name="text">
+          <string>📞  تست تماس</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="cursor">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
+        </widget>
+       </item>
+
+       <item>
+        <widget class="QPushButton" name="btn_reports">
+         <property name="text">
+          <string>📈  گزارشات</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="cursor">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
+        </widget>
+       </item>
+
+       <!-- Spacer -->
+       <item>
+        <spacer name="vertical_spacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+
+       <!-- جداکننده دوم -->
+       <item>
+        <widget class="QFrame" name="separator_2">
+         <property name="frameShape">
+          <enum>QFrame::HLine</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Sunken</enum>
+         </property>
+        </widget>
+       </item>
+
+       <item>
+        <widget class="QPushButton" name="btn_settings">
+         <property name="text">
+          <string>⚙️  تنظیمات</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="cursor">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
+        </widget>
+       </item>
+
+       <item>
+        <widget class="QLabel" name="version_label">
+         <property name="text">
+          <string>نسخه 0.1.0</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+
+      </layout>
+     </widget>
+    </item>
+
+    <!-- ===== STACKED WIDGET ===== -->
+    <item>
+     <widget class="QStackedWidget" name="stacked_widget">
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+
+      <!-- Page 0: Dashboard -->
+      <widget class="QWidget" name="dashboard_page">
+       <layout class="QVBoxLayout" name="dashboard_layout">
+        <item>
+         <widget class="QLabel" name="dashboard_title">
+          <property name="text">
+           <string>📊 داشبورد</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+
+      <!-- Page 1: Products -->
+      <widget class="QWidget" name="products_page">
+       <layout class="QVBoxLayout" name="products_layout">
+        <item>
+         <widget class="QLabel" name="products_title">
+          <property name="text">
+           <string>🍕 مدیریت محصولات</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+
+      <!-- Page 2: Orders -->
+      <widget class="QWidget" name="orders_page">
+       <layout class="QVBoxLayout" name="orders_layout">
+        <item>
+         <widget class="QLabel" name="orders_title">
+          <property name="text">
+           <string>📋 سفارشات</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+
+      <!-- Page 3: Test Call -->
+      <widget class="QWidget" name="test_call_page">
+       <layout class="QVBoxLayout" name="test_call_layout">
+        <item>
+         <widget class="QLabel" name="test_call_title">
+          <property name="text">
+           <string>📞 تست تماس</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+
+      <!-- Page 4: Reports -->
+      <widget class="QWidget" name="reports_page">
+       <layout class="QVBoxLayout" name="reports_layout">
+        <item>
+         <widget class="QLabel" name="reports_title">
+          <property name="text">
+           <string>📈 گزارشات</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+
+      <!-- Page 5: Settings -->
+      <widget class="QWidget" name="settings_page">
+       <layout class="QVBoxLayout" name="settings_layout">
+        <item>
+         <widget class="QLabel" name="settings_title">
+          <property name="text">
+           <string>⚙️ تنظیمات</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+
+     </widget>
+    </item>
+
+   </layout>
+  </widget>
+
+  <widget class="QStatusBar" name="statusBar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

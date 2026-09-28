@@ -1,0 +1,489 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>TestCallPage</class>
+ <widget class="QWidget" name="TestCallPage">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>950</width>
+    <height>700</height>
+   </rect>
+  </property>
+  <property name="layoutDirection">
+   <enum>Qt::RightToLeft</enum>
+  </property>
+  <layout class="QVBoxLayout" name="main_layout">
+   <property name="spacing">
+    <number>12</number>
+   </property>
+   <property name="leftMargin">
+    <number>20</number>
+   </property>
+   <property name="topMargin">
+    <number>20</number>
+   </property>
+   <property name="rightMargin">
+    <number>20</number>
+   </property>
+   <property name="bottomMargin">
+    <number>20</number>
+   </property>
+
+   <!-- ===== عنوان ===== -->
+   <item>
+    <widget class="QLabel" name="page_title">
+     <property name="text">
+      <string>📞  تست تماس</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+   </item>
+
+   <!-- ===== نوار کنترل ===== -->
+   <item>
+    <widget class="QFrame" name="control_bar">
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <layout class="QHBoxLayout" name="control_layout">
+      <property name="spacing">
+       <number>10</number>
+      </property>
+
+      <!-- شماره تماس -->
+      <item>
+       <widget class="QLabel" name="label_caller">
+        <property name="text">
+         <string>📱  شماره تماس‌گیرنده:</string>
+        </property>
+       </widget>
+      </item>
+
+      <item>
+       <widget class="QLineEdit" name="caller_phone_edit">
+        <property name="minimumSize">
+         <size>
+          <width>180</width>
+          <height>38</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>180</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>09123456789</string>
+        </property>
+        <property name="placeholderText">
+         <string>09xxxxxxxxx</string>
+        </property>
+        <property name="maxLength">
+         <number>13</number>
+        </property>
+       </widget>
+      </item>
+
+      <!-- دکمه شروع -->
+      <item>
+       <widget class="QPushButton" name="start_call_btn">
+        <property name="minimumSize">
+         <size>
+          <width>160</width>
+          <height>38</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>🎙️  شروع تماس</string>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+       </widget>
+      </item>
+
+      <!-- دکمه پایان -->
+      <item>
+       <widget class="QPushButton" name="end_call_btn">
+        <property name="minimumSize">
+         <size>
+          <width>140</width>
+          <height>38</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>🔴  پایان تماس</string>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+
+      <item>
+       <spacer name="control_spacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+
+      <!-- تایمر -->
+      <item>
+       <widget class="QLabel" name="timer_label">
+        <property name="minimumSize">
+         <size>
+          <width>90</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>⏱️  00:00</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+
+      <!-- وضعیت -->
+      <item>
+       <widget class="QLabel" name="status_indicator">
+        <property name="minimumSize">
+         <size>
+          <width>140</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>⚪  آماده</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+
+     </layout>
+    </widget>
+   </item>
+
+   <!-- ===== محتوای اصلی: چت + سایدبار ===== -->
+   <item>
+    <layout class="QHBoxLayout" name="content_layout">
+     <property name="spacing">
+      <number>12</number>
+     </property>
+
+     <!-- ===== ستون چت ===== -->
+     <item>
+      <widget class="QFrame" name="chat_frame">
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <layout class="QVBoxLayout" name="chat_layout">
+        <property name="spacing">
+         <number>8</number>
+        </property>
+        <property name="leftMargin">
+         <number>10</number>
+        </property>
+        <property name="topMargin">
+         <number>10</number>
+        </property>
+        <property name="rightMargin">
+         <number>10</number>
+        </property>
+        <property name="bottomMargin">
+         <number>10</number>
+        </property>
+
+        <!-- برچسب چت -->
+        <item>
+         <widget class="QLabel" name="chat_header">
+          <property name="text">
+           <string>📝  مکالمه</string>
+          </property>
+         </widget>
+        </item>
+
+        <!-- اسکرول چت -->
+        <item>
+         <widget class="QScrollArea" name="chat_scroll">
+          <property name="widgetResizable">
+           <bool>true</bool>
+          </property>
+          <property name="horizontalScrollBarPolicy">
+           <enum>Qt::ScrollBarAlwaysOff</enum>
+          </property>
+          <widget class="QWidget" name="chat_container">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>580</width>
+             <height>400</height>
+            </rect>
+           </property>
+           <layout class="QVBoxLayout" name="chat_messages_layout">
+            <property name="spacing">
+             <number>8</number>
+            </property>
+            <property name="leftMargin">
+             <number>6</number>
+            </property>
+            <property name="topMargin">
+             <number>6</number>
+            </property>
+            <property name="rightMargin">
+             <number>6</number>
+            </property>
+            <property name="bottomMargin">
+             <number>6</number>
+            </property>
+            <item>
+             <spacer name="chat_bottom_spacer">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>10</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+
+        <!-- ورودی کاربر -->
+        <item>
+         <layout class="QHBoxLayout" name="input_layout">
+          <property name="spacing">
+           <number>6</number>
+          </property>
+
+          <item>
+           <widget class="QLineEdit" name="user_input_edit">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>42</height>
+             </size>
+            </property>
+            <property name="placeholderText">
+             <string>پیام خود را تایپ کنید و Enter بزنید...</string>
+            </property>
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+
+          <item>
+           <widget class="QPushButton" name="send_btn">
+            <property name="minimumSize">
+             <size>
+              <width>90</width>
+              <height>42</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>ارسال ➤</string>
+            </property>
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+
+         </layout>
+        </item>
+
+       </layout>
+      </widget>
+     </item>
+
+     <!-- ===== سایدبار اطلاعات ===== -->
+     <item>
+      <widget class="QFrame" name="info_frame">
+       <property name="minimumSize">
+        <size>
+         <width>270</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>270</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <layout class="QVBoxLayout" name="info_layout">
+        <property name="spacing">
+         <number>10</number>
+        </property>
+
+        <!-- سبد خرید -->
+        <item>
+         <widget class="QLabel" name="cart_header">
+          <property name="text">
+           <string>🛒  سبد خرید</string>
+          </property>
+         </widget>
+        </item>
+
+        <item>
+         <widget class="QListWidget" name="cart_list">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>180</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+
+        <item>
+         <widget class="QLabel" name="cart_total_label">
+          <property name="text">
+           <string>💰  مجموع: 0 تومان</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignRight|Qt::AlignVCenter</set>
+          </property>
+         </widget>
+        </item>
+
+        <!-- جداکننده -->
+        <item>
+         <widget class="QFrame" name="line1">
+          <property name="frameShape">
+           <enum>QFrame::HLine</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Sunken</enum>
+          </property>
+         </widget>
+        </item>
+
+        <!-- اطلاعات مشتری -->
+        <item>
+         <widget class="QLabel" name="customer_header">
+          <property name="text">
+           <string>👤  اطلاعات مشتری</string>
+          </property>
+         </widget>
+        </item>
+
+        <item>
+         <widget class="QLabel" name="customer_phone_label">
+          <property name="text">
+           <string>📞  شماره ثبت: -</string>
+          </property>
+          <property name="wordWrap">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+
+        <item>
+         <widget class="QLabel" name="customer_address_label">
+          <property name="text">
+           <string>📍  آدرس: -</string>
+          </property>
+          <property name="wordWrap">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+
+        <item>
+         <spacer name="info_spacer">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+
+        <!-- دکمه ذخیره -->
+        <item>
+         <widget class="QPushButton" name="save_order_btn">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>42</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>💾  ثبت سفارش نهایی</string>
+          </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+
+        <item>
+         <widget class="QPushButton" name="download_transcript_btn">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>36</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>📥  دانلود متن مکالمه</string>
+          </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+
+       </layout>
+      </widget>
+     </item>
+
+    </layout>
+   </item>
+
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

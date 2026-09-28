@@ -1,0 +1,667 @@
+/* =====================================================
+   استایل کلی برنامه
+   ===================================================== */
+
+* {
+    font-family: "Vazirmatn", "Tahoma", "Segoe UI", sans-serif;
+    font-size: 13px;
+}
+
+QMainWindow {
+    background-color: #f5f6fa;
+}
+
+/* =====================================================
+   Sidebar
+   ===================================================== */
+
+#sidebar {
+    background-color: #1e293b;
+    border: none;
+}
+
+#logo_label {
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 12px 8px;
+    background-color: transparent;
+}
+
+#version_label {
+    color: #64748b;
+    font-size: 11px;
+    padding: 8px;
+}
+
+#separator, #separator_2 {
+    color: #334155;
+    background-color: #334155;
+    max-height: 1px;
+    border: none;
+}
+
+/* دکمه‌های ناوبری Sidebar */
+#sidebar QPushButton {
+    background-color: transparent;
+    color: #cbd5e1;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 16px;
+    text-align: right;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+#sidebar QPushButton:hover {
+    background-color: #334155;
+    color: #ffffff;
+}
+
+#sidebar QPushButton:checked {
+    background-color: #3b82f6;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+/* =====================================================
+   QStackedWidget Pages
+   ===================================================== */
+
+QStackedWidget {
+    background-color: #f5f6fa;
+}
+
+QStackedWidget > QWidget {
+    background-color: #f5f6fa;
+}
+
+/* عنوان صفحات */
+QLabel#dashboard_title,
+QLabel#products_title,
+QLabel#orders_title,
+QLabel#test_call_title,
+QLabel#reports_title,
+QLabel#settings_title {
+    font-size: 32px;
+    font-weight: bold;
+    color: #1e293b;
+    padding: 20px;
+}
+
+/* =====================================================
+   Status Bar
+   ===================================================== */
+
+QStatusBar {
+    background-color: #e2e8f0;
+    color: #334155;
+    border-top: 1px solid #cbd5e1;
+    padding: 4px 8px;
+}
+
+/* =====================================================
+   Scrollbars
+   ===================================================== */
+
+QScrollBar:vertical {
+    background-color: #f1f5f9;
+    width: 10px;
+    margin: 0;
+    border: none;
+    border-radius: 5px;
+}
+
+QScrollBar::handle:vertical {
+    background-color: #cbd5e1;
+    border-radius: 5px;
+    min-height: 30px;
+}
+
+QScrollBar::handle:vertical:hover {
+    background-color: #94a3b8;
+}
+
+QScrollBar::add-line:vertical,
+QScrollBar::sub-line:vertical {
+    height: 0;
+}
+
+/* =====================================================
+   General Widgets
+   ===================================================== */
+
+QGroupBox {
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    margin-top: 12px;
+    padding-top: 12px;
+    font-weight: bold;
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    subcontrol-position: top right;
+    padding: 0 8px;
+    color: #1e293b;
+}
+
+QLineEdit, QTextEdit, QComboBox, QSpinBox, QTimeEdit {
+    background-color: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    padding: 8px 12px;
+    color: #1e293b;
+    selection-background-color: #3b82f6;
+}
+
+QLineEdit:focus, QTextEdit:focus, QComboBox:focus,
+QSpinBox:focus, QTimeEdit:focus {
+    border: 2px solid #3b82f6;
+}
+
+QPushButton {
+    background-color: #3b82f6;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 20px;
+    font-weight: 500;
+}
+
+QPushButton:hover {
+    background-color: #2563eb;
+}
+
+QPushButton:pressed {
+    background-color: #1d4ed8;
+}
+
+QPushButton:disabled {
+    background-color: #cbd5e1;
+    color: #94a3b8;
+}
+
+/* =====================================================
+   Tables
+   ===================================================== */
+
+QTableWidget {
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    gridline-color: #f1f5f9;
+}
+
+QTableWidget::item {
+    padding: 8px;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+QTableWidget::item:selected {
+    background-color: #dbeafe;
+    color: #1e293b;
+}
+
+QHeaderView::section {
+    background-color: #f8fafc;
+    color: #475569;
+    padding: 10px;
+    border: none;
+    border-bottom: 2px solid #e2e8f0;
+    font-weight: bold;
+}
+
+
+
+
+
+/* =====================================================
+   Settings Page
+   ===================================================== */
+
+QLabel#page_title {
+    font-size: 26px;
+    font-weight: bold;
+    color: #1e293b;
+    padding: 4px 0;
+}
+
+QScrollArea#scroll_area {
+    background-color: transparent;
+    border: none;
+}
+
+QScrollArea#scroll_area > QWidget > QWidget {
+    background-color: transparent;
+}
+
+/* گروه‌های تنظیمات */
+QGroupBox#group_business,
+QGroupBox#group_persona,
+QGroupBox#group_hours,
+QGroupBox#group_phone,
+QGroupBox#group_company {
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    margin-top: 16px;
+    padding: 16px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #1e293b;
+}
+
+QGroupBox#group_business::title,
+QGroupBox#group_persona::title,
+QGroupBox#group_hours::title,
+QGroupBox#group_phone::title,
+QGroupBox#group_company::title {
+    subcontrol-origin: margin;
+    subcontrol-position: top right;
+    padding: 0 10px;
+    background-color: #f1f5f9;
+    border-radius: 6px;
+    color: #1e293b;
+}
+
+/* Slider لحن */
+QSlider#tone_slider::groove:horizontal {
+    border: 1px solid #cbd5e1;
+    height: 8px;
+    background: #f1f5f9;
+    border-radius: 4px;
+}
+
+QSlider#tone_slider::handle:horizontal {
+    background: #3b82f6;
+    border: 2px solid #ffffff;
+    width: 18px;
+    margin: -6px 0;
+    border-radius: 9px;
+}
+
+QSlider#tone_slider::handle:horizontal:hover {
+    background: #2563eb;
+}
+
+QLabel#tone_label {
+    color: #475569;
+    font-size: 12px;
+    font-weight: normal;
+}
+
+/* دکمه ذخیره */
+QPushButton#save_btn {
+    background-color: #16a34a;
+    color: #ffffff;
+    border-radius: 8px;
+    padding: 8px 18px;
+    font-weight: bold;
+}
+
+QPushButton#save_btn:hover {
+    background-color: #15803d;
+}
+
+QPushButton#save_btn:pressed {
+    background-color: #166534;
+}
+
+/* دکمه بازنشانی */
+QPushButton#reset_btn {
+    background-color: #f1f5f9;
+    color: #475569;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    padding: 8px 18px;
+    font-weight: bold;
+}
+
+QPushButton#reset_btn:hover {
+    background-color: #e2e8f0;
+    border-color: #94a3b8;
+}
+
+QPushButton#reset_btn:pressed {
+    background-color: #cbd5e1;
+}
+
+/* برچسب وضعیت */
+QLabel#status_label {
+    font-size: 13px;
+    padding: 4px 10px;
+}
+
+/* نوار دکمه‌ها */
+QFrame#button_bar {
+    background-color: #ffffff;
+    border-radius: 10px;
+    border: 1px solid #e2e8f0;
+}
+
+
+
+
+
+/* =====================================================
+   Products Page
+   ===================================================== */
+
+QLabel#page_title {
+    font-size: 26px;
+    font-weight: bold;
+    color: #1e293b;
+    padding: 4px 0;
+}
+
+QFrame#toolbar,
+QFrame#actions_bar {
+    background-color: #ffffff;
+    border-radius: 10px;
+    border: 1px solid #e2e8f0;
+    padding: 8px;
+}
+
+QLabel#stats_label {
+    color: #475569;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+QTableWidget#products_table {
+    background-color: #ffffff;
+    alternate-background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    gridline-color: #f1f5f9;
+    font-size: 13px;
+}
+
+QTableWidget#products_table::item {
+    padding: 8px;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+QTableWidget#products_table::item:selected {
+    background-color: #dbeafe;
+    color: #1e293b;
+}
+
+QHeaderView::section {
+    background-color: #f1f5f9;
+    color: #334155;
+    padding: 10px 8px;
+    border: none;
+    border-bottom: 2px solid #cbd5e1;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+/* دکمه‌های Products Page */
+QPushButton#add_btn {
+    background-color: #16a34a;
+    color: #ffffff;
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-weight: bold;
+}
+QPushButton#add_btn:hover { background-color: #15803d; }
+
+QPushButton#refresh_btn {
+    background-color: #f1f5f9;
+    color: #475569;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    padding: 8px 16px;
+}
+QPushButton#refresh_btn:hover { background-color: #e2e8f0; }
+
+QPushButton#edit_btn {
+    background-color: #3b82f6;
+    color: #ffffff;
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-weight: bold;
+}
+QPushButton#edit_btn:hover { background-color: #2563eb; }
+
+QPushButton#delete_btn {
+    background-color: #dc2626;
+    color: #ffffff;
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-weight: bold;
+}
+QPushButton#delete_btn:hover { background-color: #b91c1c; }
+
+/* =====================================================
+   Product Edit Dialog
+   ===================================================== */
+
+QDialog#ProductEditDialog {
+    background-color: #ffffff;
+}
+
+QLabel#dialog_title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #1e293b;
+    padding: 8px;
+}
+
+QLabel#error_label {
+    font-size: 13px;
+    padding: 4px;
+}
+
+QPushButton#save_btn {
+    background-color: #16a34a;
+    color: #ffffff;
+    border-radius: 8px;
+    padding: 8px 18px;
+    font-weight: bold;
+}
+QPushButton#save_btn:hover { background-color: #15803d; }
+
+QPushButton#cancel_btn {
+    background-color: #f1f5f9;
+    color: #475569;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    padding: 8px 18px;
+}
+QPushButton#cancel_btn:hover { background-color: #e2e8f0; }
+
+
+
+
+/* =====================================================
+   Test Call Page
+   ===================================================== */
+
+QLabel#page_title {
+    font-size: 26px;
+    font-weight: bold;
+    color: #1e293b;
+    padding: 4px 0;
+}
+
+/* نوار کنترل */
+QFrame#control_bar {
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 8px;
+}
+
+QLabel#label_caller {
+    font-weight: bold;
+    color: #334155;
+}
+
+QLabel#timer_label {
+    font-family: "Consolas", "Courier New", monospace;
+    font-size: 16px;
+    font-weight: bold;
+    color: #3b82f6;
+    background-color: #eff6ff;
+    border-radius: 8px;
+    padding: 6px 10px;
+}
+
+QLabel#status_indicator {
+    background-color: #f1f5f9;
+    border-radius: 8px;
+    padding: 6px 10px;
+    font-weight: bold;
+}
+
+/* دکمه شروع */
+QPushButton#start_call_btn {
+    background-color: #16a34a;
+    color: #ffffff;
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-weight: bold;
+}
+QPushButton#start_call_btn:hover { background-color: #15803d; }
+
+/* دکمه پایان */
+QPushButton#end_call_btn {
+    background-color: #dc2626;
+    color: #ffffff;
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-weight: bold;
+}
+QPushButton#end_call_btn:hover { background-color: #b91c1c; }
+QPushButton#end_call_btn:disabled {
+    background-color: #f1f5f9;
+    color: #94a3b8;
+}
+
+/* فریم چت */
+QFrame#chat_frame {
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+}
+
+QLabel#chat_header {
+    font-size: 15px;
+    font-weight: bold;
+    color: #334155;
+    padding: 4px;
+}
+
+QScrollArea#chat_scroll {
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+}
+
+QScrollArea#chat_scroll > QWidget > QWidget {
+    background-color: #f8fafc;
+}
+
+/* ورودی کاربر */
+QLineEdit#user_input_edit {
+    background-color: #ffffff;
+    border: 2px solid #cbd5e1;
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-size: 14px;
+}
+
+QLineEdit#user_input_edit:focus {
+    border-color: #3b82f6;
+}
+
+QLineEdit#user_input_edit:disabled {
+    background-color: #f1f5f9;
+    color: #94a3b8;
+}
+
+/* دکمه ارسال */
+QPushButton#send_btn {
+    background-color: #3b82f6;
+    color: #ffffff;
+    border-radius: 10px;
+    padding: 10px 18px;
+    font-weight: bold;
+}
+QPushButton#send_btn:hover { background-color: #2563eb; }
+QPushButton#send_btn:disabled {
+    background-color: #cbd5e1;
+    color: #94a3b8;
+}
+
+/* فریم اطلاعات */
+QFrame#info_frame {
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 8px;
+}
+
+QLabel#cart_header,
+QLabel#customer_header {
+    font-size: 14px;
+    font-weight: bold;
+    color: #334155;
+    padding: 4px;
+}
+
+QListWidget#cart_list {
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 4px;
+    font-size: 12px;
+}
+
+QListWidget#cart_list::item {
+    padding: 6px 4px;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+QLabel#cart_total_label {
+    font-size: 14px;
+    font-weight: bold;
+    color: #16a34a;
+    padding: 6px;
+}
+
+QLabel#customer_phone_label,
+QLabel#customer_address_label {
+    color: #475569;
+    font-size: 12px;
+    padding: 4px;
+}
+
+QPushButton#save_order_btn {
+    background-color: #16a34a;
+    color: #ffffff;
+    border-radius: 8px;
+    padding: 10px;
+    font-weight: bold;
+}
+QPushButton#save_order_btn:hover { background-color: #15803d; }
+QPushButton#save_order_btn:disabled {
+    background-color: #f1f5f9;
+    color: #94a3b8;
+}
+
+QPushButton#download_transcript_btn {
+    background-color: #f1f5f9;
+    color: #475569;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    padding: 8px;
+}
+QPushButton#download_transcript_btn:hover { background-color: #e2e8f0; }
+QPushButton#download_transcript_btn:disabled {
+    color: #cbd5e1;
+}

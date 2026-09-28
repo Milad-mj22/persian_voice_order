@@ -1,0 +1,16 @@
+PySide6>=6.6.0
+SQLAlchemy>=2.0.0
+pydantic>=2.5.0
+python-dotenv>=1.0.0
+
+# صوت
+sounddevice>=0.4.6
+soundfile>=0.12.1
+numpy>=1.26.0
+
+# AI (اختیاری - در مراحل بعدی)
+openai-whisper
+openai>=1.6.0
+# anthropic>=0.18.0
+# pyttsx3>=2.90
+# gTTS>=2.5.0
